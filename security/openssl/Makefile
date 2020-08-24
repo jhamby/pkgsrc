@@ -37,8 +37,15 @@ CONFIGURE_ENV+=		PERL=${PERL5:Q}
 
 # If the config script cannot guess the host system correctly then we need to
 # specify it manually and call the Configure script directly.
+.if !empty(PKGSRC_COMPILER:Msunpro)
+OPENSSL_HOST.SunOS-i386=	solaris-x86-cc
+OPENSSL_HOST.SunOS-sparc64=	solaris64-sparcv9-cc
+OPENSSL_HOST.SunOS-x86_64=	solaris64-x86_64-cc
+.else
 OPENSSL_HOST.SunOS-i386=	solaris-x86-gcc
+OPENSSL_HOST.SunOS-sparc64=	solaris64-sparcv9-gcc
 OPENSSL_HOST.SunOS-x86_64=	solaris64-x86_64-gcc
+.endif
 OPENSSL_HOST.Darwin-aarch64=	darwin64-arm64-cc
 
 .if defined(OPENSSL_HOST.${OPSYS}-${MACHINE_ARCH})
@@ -91,6 +98,12 @@ post-install:
 	done;								\
 	${RM} -f openssl-c_rehash.1;					\
 	${LN} -s openssl-rehash.1 c_rehash.1
+
+# We must manually add -lrt because OpenSSL no longer cares about Solaris 10.
+.if !empty(MACHINE_PLATFORM:MSunOS-5.10-*)
+# Note: Configure looks for LDLIBS, not LIBS, in the environment.
+CONFIGURE_ENV+= LDLIBS="-lrt"
+.endif
 
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

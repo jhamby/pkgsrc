@@ -17,7 +17,7 @@ COMPILER_SUNPRO_MK=	defined
 
 SUNWSPROBASE?=		/opt/SUNWspro
 .if !exists(${SUNWSPROBASE})
-SUNWSPROBASE!=         /bin/ls -d /opt/solstudio*
+SUNWSPROBASE!=         /bin/ls -d /opt/*studio*
 .endif
 
 # common definitions

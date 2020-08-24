@@ -1,0 +1,15 @@
+$NetBSD$
+
+Solaris 10 (and earlier) are missing a prototype for sethostname().
+
+--- Modules/socketmodule.c.orig	2020-08-23 18:59:22.954229328 +0000
++++ Modules/socketmodule.c	2020-08-23 19:49:23.236095550 +0000
+@@ -5228,7 +5228,7 @@
+     Py_buffer buf;
+     int res, flag = 0;
+ 
+-#ifdef _AIX
++#if defined(_AIX) || defined(__sun)
+ /* issue #18259, not declared in any useful header file */
+ extern int sethostname(const char *, size_t);
+ #endif

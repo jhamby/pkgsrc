@@ -7,6 +7,35 @@ variety of UNIX-like systems.
 It produces binary packages, which can be managed with tools such as
 [pkgin](http://pkgin.net/).
 
+SPARC Solaris 10
+----------------
+
+This fork of pkgsrc has local changes for Solaris 10 on SPARC, and for
+building 64-bit packages (`ABI=64`). I will add more notes later. -jhamby
+
+### Required packages
+
+- OpenCSW packages (**TODO: add list of needed bootstrap packages**).
+  [OpenCSW Wikipedia page](https://en.wikipedia.org/wiki/OpenCSW)
+
+### Known issues
+
+- It's not yet possible to bootstrap GCC or newer (with `ABI=64`).
+  I hope to support at least `lang/gcc5`, `lang/gcc6`, and `lang/gcc7`.
+- SunPro compiler can't find header files in same directory as source files,
+  when there is a `#line` directive in the source code (e.g. generated code).
+  I worked around this bug in bootstrapping by adding `"-I."` to `CPPFLAGS`.
+- `devel/libffi` build failure using SunPro compiler.
+- You must rebuild `devel/libtool-base` whenever switching compilers, or
+  new builds using GNU libtool will use the wrong compiler flags.
+- You must add `PKG_OPTIONS.openssh=-editline` to `mk.conf` for now to build
+  security/openssh, as devel/editline is currently broken.
+- **`textproc/asciidoc` & `devel/meson` overwrite `/dev/null` during builds.**
+  `/dev/null` is being replaced with an empty file, causing install to fail.
+  I believe this is a Python 3 issue related to `/dev/null` being a symlink.
+- `sysutils/smartmontools` builds but doesn't return all of the SMART info.
+  The version of smartmontools in OpenCSW doesn't have this problem.
+
 Bootstrapping
 -------------
 

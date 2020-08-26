@@ -11,7 +11,7 @@ SPARC Solaris 10
 ----------------
 
 This fork of pkgsrc has local changes for Solaris 10 on SPARC, and for
-building 64-bit packages (`ABI=64`). I will add more notes later. -jhamby
+building GCC with Ada support.
 
 ### Required packages
 
@@ -20,8 +20,10 @@ building 64-bit packages (`ABI=64`). I will add more notes later. -jhamby
 
 ### Known issues
 
-- It's not yet possible to bootstrap GCC or newer (with `ABI=64`).
-  I hope to support at least `lang/gcc5`, `lang/gcc6`, and `lang/gcc7`.
+- Bootstrapping `lang/gcc5` works, **as long as `security/skey` is not installed.**
+  That package was pulled in by `security/openssh` by default, and it installs
+  an "sha1.h" header file in /usr/pkg/include that doesn't work with Solaris.
+  I will fix `security/skey` to not install the conflicting header file.
 - SunPro compiler can't find header files in same directory as source files,
   when there is a `#line` directive in the source code (e.g. generated code).
   I worked around this bug in bootstrapping by adding `"-I."` to `CPPFLAGS`.
@@ -30,11 +32,17 @@ building 64-bit packages (`ABI=64`). I will add more notes later. -jhamby
   new builds using GNU libtool will use the wrong compiler flags.
 - You must add `PKG_OPTIONS.openssh=-editline` to `mk.conf` for now to build
   security/openssh, as devel/editline is currently broken.
-- **`textproc/asciidoc` & `devel/meson` overwrite `/dev/null` during builds.**
+- **Some packages using Python 3, e.g. `textproc/asciidoc` & `devel/ninja-build`,
+  overwrite `/dev/null` during builds when run as root.**
   `/dev/null` is being replaced with an empty file, causing install to fail.
   I believe this is a Python 3 issue related to `/dev/null` being a symlink.
+  *As a workaround, you can build the packages as non-root, then install as root.*
 - `sysutils/smartmontools` builds but doesn't return all of the SMART info.
   The version of smartmontools in OpenCSW doesn't have this problem.
+- The `USE_FEATURES` options that build libnbcompat don't work when the package
+  is or includes a shared library, because libnbcompat isn't built with `-fPIC -DPIC`
+  (or `-KPIC -DPIC` for SunPro C). Fixing this will unblock many currently-broken
+  packages that use, e.g. `strnlen()`.
 
 Bootstrapping
 -------------

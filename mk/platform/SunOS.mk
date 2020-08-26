@@ -136,3 +136,8 @@ _OPSYS_CAN_CHECK_SHLIBS=	yes # Requires readelf
 # to avoid a test required by the libtool script that takes forever.
 # FIXME: Adjust to work on this system and enable the lines below.
 #_OPSYS_MAX_CMDLEN_CMD=	/sbin/sysctl -n kern.argmax
+
+# strnlen() wasn't included until Solaris 11.
+.if empty(OS_VERSION:M5.11)
+_OPSYS_MISSING_FEATURES+= 	strnlen
+.endif

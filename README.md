@@ -10,8 +10,14 @@ It produces binary packages, which can be managed with tools such as
 SPARC Solaris 10
 ----------------
 
-This fork of pkgsrc has local changes for Solaris 10 on SPARC, and for
-building GCC with Ada support.
+This fork of pkgsrc includes changes to support Solaris 10 on SPARC,
+building 64-bit packages (using `ABI=64`), and building GCC 5.5
+`(lang/gcc5)` with support for the Ada and Go languages. Some testing
+has been done with Oracle Developer Studio 12.6 as well.
+
+As you read this, the GCC 5.5 port is being rebuilt and tested, and
+then new versions of GCC will be bootstrapped for Solaris 10, starting
+with `(lang/gcc6)` and proceeding until GCC 10.2, if possible.
 
 ### Required packages
 
@@ -24,6 +30,13 @@ building GCC with Ada support.
   That package was pulled in by `security/openssh` by default, and it installs
   an "sha1.h" header file in /usr/pkg/include that doesn't work with Solaris.
   I will fix `security/skey` to not install the conflicting header file.
+- If you want to build GCC with Go support, you must have `/usr/pkg/gnu/bin`
+  in your PATH so that libgo's configure script can find `objcopy`. libgo
+  should respect the value of OBJCOPY passed in the environment to the top-level
+  `configure` script, but the value doesn't seem to get passed through.
+  The `objcopy` command is also hardcoded in GCC 5's `gcc/gcc.c` source file.
+- If you don't want to build 32-bit and 64-bit libraries when building GCC
+  with `ABI=64`, you can add `-gcc-multilib` to your `PKG_OPTIONS.gcc5`.
 - SunPro compiler can't find header files in same directory as source files,
   when there is a `#line` directive in the source code (e.g. generated code).
   I worked around this bug in bootstrapping by adding `"-I."` to `CPPFLAGS`.

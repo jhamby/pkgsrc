@@ -1,8 +1,11 @@
-$NetBSD: patch-pri,v 1.1 2019/10/28 19:00:37 bouyer Exp $
+$NetBSD: patch-qwtconfig.pri,v 1.2 2020/08/30 08:19:06 tnn Exp $
 
---- qwtconfig.pri.orig	2019-01-02 17:21:31.556467499 +0100
-+++ qwtconfig.pri	2019-10-25 18:51:20.912266571 +0200
-@@ -19,7 +19,7 @@
+Don't hardcode PREFIX.
+Ship the pkg-config file. Needed by gnuradio-qtgui.
+
+--- qwtconfig.pri.orig	2020-06-01 16:48:07.325112226 +0000
++++ qwtconfig.pri
+@@ -19,7 +19,7 @@ QWT_VERSION      = $${QWT_VER_MAJ}.$${QW
  QWT_INSTALL_PREFIX = $$[QT_INSTALL_PREFIX]
  
  unix {
@@ -11,7 +14,7 @@ $NetBSD: patch-pri,v 1.1 2019/10/28 19:00:37 bouyer Exp $
      # QWT_INSTALL_PREFIX = /usr/local/qwt-$$QWT_VERSION-qt-$$QT_VERSION
  }
  
-@@ -42,14 +42,14 @@
+@@ -42,14 +42,14 @@ QWT_INSTALL_LIBS      = $${QWT_INSTALL_P
  # runtime environment of designer/creator.
  ######################################################################
  
@@ -28,3 +31,10 @@ $NetBSD: patch-pri,v 1.1 2019/10/28 19:00:37 bouyer Exp $
  
  ######################################################################
  # Features
+@@ -171,5 +171,5 @@ macx:!static:CONFIG(qt_framework, qt_fra
+ 
+ unix {
+ 
+-    #QWT_CONFIG     += QwtPkgConfig
++    QWT_CONFIG     += QwtPkgConfig
+ }

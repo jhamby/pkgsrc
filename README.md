@@ -7,36 +7,70 @@ variety of UNIX-like systems.
 It produces binary packages, which can be managed with tools such as
 [pkgin](http://pkgin.net/).
 
-SPARC Solaris 10
-----------------
+Solaris 10 pkgsrc
+-----------------
 
-This fork of pkgsrc includes changes to support Solaris 10 on SPARC,
-building 64-bit packages (using `ABI=64`), and building GCC 5.5
-`(lang/gcc5)` with support for the Ada and Go languages. Some testing
-has been done with Oracle Developer Studio 12.6 as well.
+This fork of pkgsrc includes patches for Solaris 10 on SPARC and x86,
+for building 64-bit packages (using `ABI=64`), and for building GCC 7.5
+`(lang/gcc7)` with support for the Ada and Go languages. Some testing
+has been done with Oracle Developer Studio 12.6, but most testing
+has been done so far using the OpenCSW port of GCC 5.5 to bootstrap.
 
-As you read this, the GCC 5.5 port is being rebuilt and tested, and
-then new versions of GCC will be bootstrapped for Solaris 10, starting
-with `(lang/gcc6)` and proceeding until GCC 10.2, if possible.
+Currently, packages are being rebuilt and tested with GCC 7.5. Older and
+newer versions of GCC will be tested and added as well, but the GCC 7
+branch appears to be the most stable and likely to generate the best code,
+based on the maintainer of this fork's previous testing of GCC 7.4 and 8.4
+on NetBSD/sparc64.
 
 ### Required packages
 
-- OpenCSW packages (**TODO: add list of needed bootstrap packages**).
+- OpenCSW packages for GCC 5.5: `gcc5core` `gcc5g++` (and dependencies).
+  Add `gcc5ada` if you want to build GCC from pkgsrc with Ada support.
   [OpenCSW Wikipedia page](https://en.wikipedia.org/wiki/OpenCSW)
+
+### 64-bit bootstrapping
+
+Start out with a `PATH` and `MANPATH` similar to this, for Solaris 10:
+
+`export PATH=/usr/pkg/bin:/usr/pkg/sbin:/usr/pkg/gnu/bin:/opt/csw/bin:/usr/sfw/bin:/usr/bin:/usr/ccs/bin:/usr/sbin:/sbin:/usr/openwin/bin:/usr/dt/bin
+export MANPATH=/usr/pkg/man:/usr/share/man:/usr/openwin/man:/usr/dt/man:/opt/csw/man:/usr/sfw/man`
+
+You'll probably want to run `umask 022` if your umask is set to 077.
+
+Then you can use this bootstrap command, as root:
+
+`# CFLAGS="-O2 -pipe -m64" LDFLAGS="-m64" ./bootstrap --abi=64`
+
+If you want to bootstrap with Oracle Studio, try this instead:
+
+`# CC="cc" CXX="CC" CFLAGS="-O -64" LDFLAGS="-64" ./bootstrap --abi=64`
+
+You can make and install packages as your regular user account,
+assuming that `/usr/pkgsrc` is owned by your user account, and then
+pkgsrc will call "su" automatically when you run bmake install/replace.
+
+You'll definitely want to avoid building Python 3 packages as root, to
+avoid the /dev/null symlink being overwritten (see "Known issues" below).
+
+You'll also need to remove the "-m64" from CFLAGS and LDFLAGS before
+building GCC from pkgsrc, unless you add `-gcc-multilib`, or the 32-bit
+libraries will fail to build. The `pkgtools/cwrappers` wrappers will add
+"-m64" automatically and transparently, but pkgsrc currently does not
+build and use `cwrappers` if you're using SunPro CC instead of GCC.
 
 ### Known issues
 
-- Bootstrapping `lang/gcc5` works, **as long as `security/skey` is not installed.**
+- Bootstrapping `lang/gcc7` works, **as long as `security/skey` is not installed.**
   That package was pulled in by `security/openssh` by default, and it installs
-  an "sha1.h" header file in /usr/pkg/include that doesn't work with Solaris.
+  an "sha1.h" header file in `/usr/pkg/include` that doesn't work with Solaris.
   I will fix `security/skey` to not install the conflicting header file.
-- If you want to build GCC with Go support, you must have `/usr/pkg/gnu/bin`
-  in your PATH so that libgo's configure script can find `objcopy`. libgo
-  should respect the value of OBJCOPY passed in the environment to the top-level
-  `configure` script, but the value doesn't seem to get passed through.
-  The `objcopy` command is also hardcoded in GCC 5's `gcc/gcc.c` source file.
+- For building GCC, you should have `/usr/pkg/gnu/bin` early in your PATH so
+  that libgo's configure script can find `objcopy`. I've added a patch to the
+  `contrib/compare-debug` script, which compares the `.o` files generated in
+  stage2 and stage3, so that it finds the binutils version of `strip` instead of
+  Solaris `strip` and doesn't fail due to debug info not being stripped.
 - If you don't want to build 32-bit and 64-bit libraries when building GCC
-  with `ABI=64`, you can add `-gcc-multilib` to your `PKG_OPTIONS.gcc5`.
+  with `ABI=64`, you can add `-gcc-multilib` to your `PKG_OPTIONS.gcc7`.
 - SunPro compiler can't find header files in same directory as source files,
   when there is a `#line` directive in the source code (e.g. generated code).
   I worked around this bug in bootstrapping by adding `"-I."` to `CPPFLAGS`.

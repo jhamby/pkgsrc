@@ -139,25 +139,21 @@ CONFIGURE_ARGS+=	--with-dwarf2
 MAKE_ENV+=		ac_cv_path_SED=${TOOLS_SED}
 MAKE_ENV+=		lt_cv_path_SED=${TOOLS_SED}
 
-# Determine whether to use binutils
+# Always use devel/binutils on Solaris 10 (and 11).
 .if ${OPSYS} == "SunOS"
-.  if exists(/usr/sfw/bin/gobjdump)
-CONFIGURE_ENV+=		OBJDUMP=/usr/sfw/bin/gobjdump
-.  endif
+BUILDLINK_DEPMETHOD.binutils=	full
+.  include "../../devel/binutils/buildlink3.mk"
+# Note that GCC has some hardcoded uses of objcopy and readelf.
+# Put /usr/pkg/gnu/bin in your PATH to work around this when building Go.
+CONFIGURE_ENV+=		OBJDUMP=${PREFIX}/bin/gobjdump
+CONFIGURE_ENV+=		OBJCOPY=${PREFIX}/bin/gobjcopy
+CONFIGURE_ENV+=		READELF=${PREFIX}/bin/greadelf
 .  if exists(/usr/bin/ld)
 CONFIGURE_ARGS+=	--without-gnu-ld --with-ld=/usr/bin/ld
 .  else
 CONFIGURE_ARGS+=	--without-gnu-ld --with-ld=/usr/ccs/bin/ld
 .  endif
-.  if exists(/usr/sfw/bin/gas)
-CONFIGURE_ARGS+=	--with-gnu-as --with-as=/usr/sfw/bin/gas
-.  elif exists(/usr/ccs/bin/as)
-CONFIGURE_ARGS+=	--without-gnu-as --with-as=/usr/ccs/bin/as
-.  else
-BUILDLINK_DEPMETHOD.binutils=	full
-.    include "../../devel/binutils/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-gnu-as --with-as=${PREFIX}/bin/gas
-.  endif
 .endif
 
 .if ${OS_VARIANT} == "SmartOS"

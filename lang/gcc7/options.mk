@@ -3,7 +3,7 @@
 PKG_OPTIONS_VAR=	PKG_OPTIONS.${GCC_PKGNAME}
 PKG_SUPPORTED_OPTIONS=	nls gcc-inplace-math gcc-c++ gcc-fortran \
 			gcc-go gcc-objc gcc-objc++ gcc-graphite \
-			always-libgcc
+			always-libgcc gcc-ada
 PKG_SUGGESTED_OPTIONS=	gcc-c++ gcc-fortran gcc-objc gcc-objc++ \
 			gcc-graphite gcc-inplace-math
 
@@ -34,6 +34,9 @@ MULTILIB_SUPPORTED=	No
 .  else
 MULTILIB_SUPPORTED=	Yes
 .  endif
+.endif
+.if !empty(MACHINE_PLATFORM:MSunOS-*)
+MULTILIB_SUPPORTED=	Yes
 .endif
 .if !empty(MULTILIB_SUPPORTED:M[Yy][Ee][Ss])
 PKG_SUPPORTED_OPTIONS+=	gcc-multilib
@@ -122,9 +125,14 @@ post-extract:
 
 ###
 ### Optional languages
-### Ada could be added although there is a bootstrapping issue.  See
-### ../gcc34-ada for guidance
+### Ada works, although there is a bootstrapping issue.
+### See ../gcc34-ada for guidance.
 ###
+
+.if !empty(PKG_OPTIONS:Mgcc-ada)
+LANGS+=			ada
+.endif
+
 .if !empty(PKG_OPTIONS:Mgcc-objc++)
 .  if empty(PKG_OPTIONS:Mgcc-c++)
 PKG_OPTIONS+=		gcc-c++

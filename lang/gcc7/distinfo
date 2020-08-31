@@ -8,6 +8,7 @@ SHA1 (isl-0.18.tar.bz2) = bbffc5a2b05e4f0c97e882f96c448504491dc4ed
 RMD160 (isl-0.18.tar.bz2) = e876f1049893de5be4a82a63f272f62547d455ca
 SHA512 (isl-0.18.tar.bz2) = 85d0b40f4dbf14cb99d17aa07048cdcab2dc3eb527d2fbb1e84c41b2de5f351025370e57448b63b2b8a8cf8a0843a089c3263f9baee1542d5c2e1cb37ed39d94
 Size (isl-0.18.tar.bz2) = 1658291 bytes
+SHA1 (patch-contrib_compare-debug) = 4f12612110441c663691add67462082fa4edd502
 SHA1 (patch-contrib_download__prerequisites) = 86c6c16e0e3e3a0bcb38579a8b4004f603fac1ca
 SHA1 (patch-gcc_Makefile.in) = d96a57a098e49a2c5ea6478dd5d22aba584fc1bc
 SHA1 (patch-gcc_common_config_arm_arm-common.c) = 7c973cb9554a52f4b85f8fc98708f5e5cce8e8bd

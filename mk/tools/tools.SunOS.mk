@@ -96,8 +96,9 @@ TOOLS_PLATFORM.gm4?=		/usr/bin/gm4
 .endif
 .if exists(/usr/bin/gmake)
 TOOLS_PLATFORM.gmake?=		/usr/bin/gmake
-.elif exists(/usr/sfw/bin/gmake)
-TOOLS_PLATFORM.gmake?=		/usr/sfw/bin/gmake
+# Prefer pkgsrc gmake to Solaris 10 version.
+#.elif exists(/usr/sfw/bin/gmake)
+#TOOLS_PLATFORM.gmake?=		/usr/sfw/bin/gmake
 .endif
 .if exists(/usr/bin/groff)
 TOOLS_PLATFORM.groff?=		/usr/bin/groff

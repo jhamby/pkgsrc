@@ -127,7 +127,6 @@ include/nss/nss/utilpars.h
 include/nss/nss/utilparst.h
 include/nss/nss/utilrename.h
 lib/nss/libcrmf.a
-lib/nss/libfreebl3.so
 lib/nss/libnss3.so
 lib/nss/libnssckbi-testlib.so
 lib/nss/libnssckbi.so

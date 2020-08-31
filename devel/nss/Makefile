@@ -89,6 +89,12 @@ MAKE_ENV+=	NSS_ENABLE_TLS_1_3=1
 CFLAGS+=	-DNSS_NO_GCC48
 .endif
 
+.if ${OPSYS} == "SunOS" && ${MACHINE_ARCH} == "sparc64"
+PLIST_SRC+=		PLIST.sparc64-solaris
+.else
+PLIST_SRC+=		PLIST.not-sparc64-solaris
+.endif
+
 NSS_MAJOR_VERSION=	${NSS_RELEASE:C/\.[0-9.]*//}
 NSS_MINOR_VERSION=	${NSS_RELEASE:S/3.//:C/\.[0-9]*//}
 NSS_PATCH_VERSION=	${NSS_RELEASE:C/[0-9.]*\.//}

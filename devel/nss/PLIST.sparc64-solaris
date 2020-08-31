@@ -1,0 +1,3 @@
+@comment $NetBSD$
+lib/nss/libfreebl_64fpu_3.so
+lib/nss/libfreebl_64int_3.so

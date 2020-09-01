@@ -13,7 +13,7 @@ LICENSE=		mit AND modified-bsd
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config
-USE_FEATURES+=		strnlen
+USE_FEATURES+=		err strnlen
 
 PKGCONFIG_OVERRIDE+=	xfont2.pc.in
 

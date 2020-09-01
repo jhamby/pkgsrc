@@ -4,3 +4,6 @@ SHA1 (libXfont2-2.0.4.tar.bz2) = 9e00ae7589315656435efaf330128facad7c4a57
 RMD160 (libXfont2-2.0.4.tar.bz2) = f281a2765891d4b8f2f1193fb0d97d1d4f51e1c8
 SHA512 (libXfont2-2.0.4.tar.bz2) = 7cf6c58e520e48e24fc4f05fec760fcbeaaac0cedeed57dded262c855e1515cc34cd033222945a0b016f6857b83009fc2a6946c7d632c2f7bb0060f8e8a8a106
 Size (libXfont2-2.0.4.tar.bz2) = 513167 bytes
+SHA1 (patch-src_bitmap_pcfread.c) = c222d2eeb1299e6b670f818f700cb0d631b16c3b
+SHA1 (patch-tests_utils_font-test-utils.c) = a9184142ccc1de3f0beb1f9ab2f648f26d4be334
+SHA1 (patch-tests_utils_lsfontdir.c) = 1d0780c3189d56273181307021d5159f296ef591

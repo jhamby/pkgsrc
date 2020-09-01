@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.20045 2020/08/31 16:40:02 wiz Exp $
+$NetBSD: TODO,v 1.20048 2020/08/31 23:04:47 wiz Exp $
 
 Suggested new packages
 ======================
@@ -798,6 +798,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o mailutis-2.2 [wip]
 	o maketool-0.8.4
 	o makeztxt-1.60
+	o mame-0.224
 	o manedit-1.2.1
 	o mantis-2.22.1
 	o mapserver-7.0.1
@@ -894,7 +895,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o pcc-1.1.0
 	o pcc-current-20160305
 	o pdmenu-1.2.87
-	o perl5-5.32.0
 	o pessulus-2.30.3
 	o pgadmin4-1.0
 	o pgbuildfarm-4.17
@@ -973,7 +973,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-pandas-1.0.0
 	o py-ptt-1.10.2
 	o py-rsa-4.6 [drops python-2.x support]
-	o py-setuptools-50.0.0 [drops python-2.x support]
+	o py-setuptools-50.0.0 [broken on NetBSD: https://github.com/pypa/setuptools/issues/2364]
 	o py-simpletal-5.1
 	o py-sybase-0.37
 	o py-wxWidgets-4.0.0
@@ -1092,6 +1092,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o telepathy-mission-control5-5.16.3
 	o tetrinetx-1.40c
 	o tfmxplay-1.1.6
+	o thunderbird-78.2.1
 	o tig-2.2
 	o tigervnc-1.10.1 [quite unstable]
 	o tightvnc-2.7.10

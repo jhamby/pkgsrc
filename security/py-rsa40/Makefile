@@ -1,19 +1,19 @@
-# $NetBSD: Makefile,v 1.8 2020/09/01 04:09:14 wiz Exp $
+# $NetBSD: Makefile,v 1.1 2020/09/01 04:06:11 wiz Exp $
 
-DISTNAME=	rsa-4.6
+DISTNAME=	rsa-4.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	security python
 MASTER_SITES=	${MASTER_SITE_PYPI:=r/rsa/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/sybrenstuvel/python-rsa
-COMMENT=	Pure-Python RSA implementation
+COMMENT=	Pure-Python RSA implementation (for Python 2.x)
 LICENSE=	apache-2.0
 
 DEPENDS+=	${PYPKGPREFIX}-asn1>=0.1.3:../../security/py-asn1
 TEST_DEPENDS+=	${PYPKGPREFIX}-mock-[0-9]*:../../devel/py-mock
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27
+PYTHON_VERSIONS_ACCEPTED=	27
 
 USE_LANGUAGES=	# none
 

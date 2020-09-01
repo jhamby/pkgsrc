@@ -295,6 +295,8 @@ AC_CHECK_DECLS([asprintf(char **, const char *, ...)],
              #include <stdio.h>])
 AC_CHECK_DECLS([strdup(const char *)],
             [], [AC_LIBOBJ(strdup)], [#include <string.h>])
+AC_CHECK_DECLS([strndup(const char *, size_t)],
+            [], [AC_LIBOBJ(strndup)], [#include <string.h>])
 
 case $host_os in
 darwin*)

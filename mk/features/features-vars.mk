@@ -41,11 +41,13 @@
 #	* warn: The functions warn, vwarn, warnx, vwarnx.
 #	* fts_close, fts_open, fts_read, fts_set: Functions
 #	  for filesystem traversal.
+#	* getline
 #	* getopt_long: The GNU version of getopt.
 #	* getprogname, setprogname
 #	* glob
 #	* regcomp
 #	* snprintf, vsnprintf
+#	* strndup
 #	* strnlen
 #	* utimes
 #	* nbcompat: All of the above.
@@ -60,9 +62,9 @@
 #	support IPv6.
 #
 # Keywords: feature features asprintf vasprintf cdefs err errx warn warnx
-# Keywords: fts fts_open fts_read fts_set fts_close getopt_long
-# Keywords: getprogname setprogname glob regcomp setenv snprintf strnlen
-# Keywords: vsnprintf utimes libnbcompat nbcompat
+# Keywords: fts fts_open fts_read fts_set fts_close getline getopt_long
+# Keywords: getprogname setprogname glob regcomp setenv snprintf strndup
+# Keywords: strnlen utimes vsnprintf libnbcompat nbcompat
 
 _VARGROUPS+=		features
 _USER_VARS.features=	# none
@@ -114,6 +116,14 @@ BUILTIN_FIND_HEADERS._FEATURES_FTS_H=	fts.h
 .include "../../mk/buildlink3/find-headers.mk"
 .    endif
 .    if !empty(_FEATURES_FTS_H:M__nonexistent__)
+MISSING_FEATURES+=	${_feature_}
+.    endif
+.  endif
+.endfor
+
+.for _feature_ in getline strndup
+.  if !empty(USE_FEATURES:M${_feature_})
+.    if (${OPSYS} == "SunOS") && empty(OS_VERSION:M5.11)
 MISSING_FEATURES+=	${_feature_}
 .    endif
 .  endif

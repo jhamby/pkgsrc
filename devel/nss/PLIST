@@ -127,6 +127,9 @@ include/nss/nss/utilpars.h
 include/nss/nss/utilparst.h
 include/nss/nss/utilrename.h
 lib/nss/libcrmf.a
+${PLIST.notsparc64sunos}lib/nss/libfreebl3.so
+${PLIST.sparc64sunos}lib/nss/libfreebl_64fpu_3.so
+${PLIST.sparc64sunos}lib/nss/libfreebl_64int_3.so
 lib/nss/libnss3.so
 lib/nss/libnssckbi-testlib.so
 lib/nss/libnssckbi.so

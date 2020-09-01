@@ -90,10 +90,11 @@ MAKE_ENV+=	NSS_ENABLE_TLS_1_3=1
 CFLAGS+=	-DNSS_NO_GCC48
 .endif
 
+PLIST_VARS+=		sparc64sunos notsparc64sunos
 .if ${OPSYS} == "SunOS" && ${MACHINE_ARCH} == "sparc64"
-PLIST_SRC+=		PLIST.sparc64-solaris
+PLIST.sparc64sunos=	yes
 .else
-PLIST_SRC+=		PLIST.not-sparc64-solaris
+PLIST.notsparc64sunos=	yes
 .endif
 
 NSS_MAJOR_VERSION=	${NSS_RELEASE:C/\.[0-9.]*//}

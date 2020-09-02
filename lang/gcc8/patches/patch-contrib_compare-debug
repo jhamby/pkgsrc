@@ -1,0 +1,21 @@
+Fix compare-debug script for Solaris 10 build.
+
+For Solaris 10, prepend /usr/pkg/gnu/bin to PATH to use binutils "strip".
+
+--- contrib/compare-debug.orig	2013-01-04 04:49:55.235780000 +0000
++++ contrib/compare-debug	2020-08-30 18:55:09.032760784 +0000
+@@ -21,6 +21,14 @@
+ # along with GCC; see the file COPYING3.  If not see
+ # <http://www.gnu.org/licenses/>.
+ 
++case `uname -s` in
++SunOS)
++  # pkgsrc hack to use the binutils versions of strip, etc.
++  PATH=/usr/pkg/gnu/bin:$PATH
++  export PATH
++  ;;
++esac
++
+ rm='rm -f'
+ 
+ case $1 in

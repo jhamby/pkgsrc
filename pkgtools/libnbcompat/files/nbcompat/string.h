@@ -64,4 +64,8 @@ size_t	strnlen(const char *s, size_t maxlen);
 char	*strsep(char **stringp, const char *delim);
 #endif
 
+#if !HAVE_STRNDUP
+char	*strndup(const char *str, size_t n);
+#endif
+
 #endif	/* !_NBCOMPAT_STRING_H_ */

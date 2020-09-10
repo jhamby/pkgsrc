@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.897 2020/08/20 13:55:36 jperkin Exp $
+# $NetBSD: Makefile,v 1.900 2020/09/10 11:26:01 nia Exp $
 #
 
 COMMENT=	System utilities
@@ -405,6 +405,7 @@ SUBDIR+=	ntfsprogs
 SUBDIR+=	nvnet
 SUBDIR+=	nvramtool
 SUBDIR+=	oak
+SUBDIR+=	onefetch
 SUBDIR+=	open-vm-tools
 SUBDIR+=	openstack_init
 SUBDIR+=	openxenmanager
@@ -440,7 +441,6 @@ SUBDIR+=	p5-Sys-CpuLoad
 SUBDIR+=	p5-Sys-Filesystem
 SUBDIR+=	p5-Sys-Hostname-Long
 SUBDIR+=	p5-Sys-SigAction
-SUBDIR+=	p5-Sys-Syslog
 SUBDIR+=	p5-Sys-Utmp
 SUBDIR+=	p5-UPS-Nut
 SUBDIR+=	p5-Unburden-Home-Dir
@@ -762,6 +762,7 @@ SUBDIR+=	whowatch
 SUBDIR+=	wipe
 SUBDIR+=	within
 SUBDIR+=	wmSMPmon
+SUBDIR+=	wmbattery
 SUBDIR+=	wmcpuload
 SUBDIR+=	wmmemmon
 SUBDIR+=	wpi-firmware

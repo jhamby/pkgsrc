@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.555 2020/08/16 21:21:12 otis Exp $
+# $NetBSD: Makefile,v 1.560 2020/09/10 16:35:31 taca Exp $
 #
 
 COMMENT=	Electronic mail utilities
@@ -225,7 +225,6 @@ SUBDIR+=	p5-Mail-AuthenticationResults
 SUBDIR+=	p5-Mail-Box
 SUBDIR+=	p5-Mail-Box-IMAP4
 SUBDIR+=	p5-Mail-Box-POP3
-SUBDIR+=	p5-Mail-ClamAV
 SUBDIR+=	p5-Mail-DKIM
 SUBDIR+=	p5-Mail-DeliveryStatus-BounceParser
 SUBDIR+=	p5-Mail-Ezmlm
@@ -339,7 +338,6 @@ SUBDIR+=	roundcube-plugin-zipdownload
 SUBDIR+=	rspamd
 SUBDIR+=	rss2email
 SUBDIR+=	ruby-actionmailbox60
-SUBDIR+=	ruby-actionmailer51
 SUBDIR+=	ruby-actionmailer52
 SUBDIR+=	ruby-actionmailer60
 SUBDIR+=	ruby-mail
@@ -382,10 +380,11 @@ SUBDIR+=	sympa
 SUBDIR+=	t-prot
 SUBDIR+=	teapop
 SUBDIR+=	thunderbird
-SUBDIR+=	thunderbird-enigmail
 SUBDIR+=	thunderbird-l10n
 SUBDIR+=	thunderbird52
 SUBDIR+=	thunderbird52-l10n
+SUBDIR+=	thunderbird68
+SUBDIR+=	thunderbird68-l10n
 SUBDIR+=	tmda
 SUBDIR+=	tnef
 SUBDIR+=	tnef2txt

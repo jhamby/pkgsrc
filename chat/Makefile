@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.248 2020/06/13 08:40:27 wiz Exp $
+# $NetBSD: Makefile,v 1.251 2020/09/10 02:39:01 jnemeth Exp $
 #
 
 COMMENT=	Communication programs
@@ -65,6 +65,7 @@ SUBDIR+=	ktp-send-file
 SUBDIR+=	ktp-text-ui
 SUBDIR+=	libfolks
 SUBDIR+=	libgadu
+SUBDIR+=	libmesode
 SUBDIR+=	libmsn
 SUBDIR+=	libotr
 SUBDIR+=	libpurple
@@ -73,6 +74,7 @@ SUBDIR+=	libtelepathy
 SUBDIR+=	libtlen
 SUBDIR+=	loudmouth
 SUBDIR+=	lurch-purple
+SUBDIR+=	matrix-synapse
 SUBDIR+=	matterircd
 SUBDIR+=	mcabber
 SUBDIR+=	meanwhile
@@ -94,6 +96,7 @@ SUBDIR+=	pidgin-otr
 SUBDIR+=	pidgin-sametime
 SUBDIR+=	pidgin-silc
 SUBDIR+=	pircbot
+SUBDIR+=	profanity
 SUBDIR+=	prosody
 SUBDIR+=	psi
 SUBDIR+=	psybnc

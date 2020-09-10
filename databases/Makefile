@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.611 2020/09/01 08:04:55 wiz Exp $
+# $NetBSD: Makefile,v 1.614 2020/09/10 16:55:19 taca Exp $
 
 COMMENT=	Databases
 
@@ -225,6 +225,7 @@ SUBDIR+=	p5-Rose-DBx-Garden-Catalyst
 SUBDIR+=	p5-Rose-DBx-Object-MoreHelpers
 SUBDIR+=	p5-Rose-DBx-TestDB
 SUBDIR+=	p5-SQL-Abstract
+SUBDIR+=	p5-SQL-Abstract-Classic
 SUBDIR+=	p5-SQL-Abstract-Limit
 SUBDIR+=	p5-SQL-ReservedWords
 SUBDIR+=	p5-SQL-Statement
@@ -406,12 +407,10 @@ SUBDIR+=	rrdtool
 SUBDIR+=	rrdtool12
 SUBDIR+=	ruby-activeldap
 SUBDIR+=	ruby-activerecord-odbc
-SUBDIR+=	ruby-activerecord51
 SUBDIR+=	ruby-activerecord52
 SUBDIR+=	ruby-activerecord60
 SUBDIR+=	ruby-arel
 SUBDIR+=	ruby-arel-helpers
-SUBDIR+=	ruby-arel80
 SUBDIR+=	ruby-awesome_nested_set
 SUBDIR+=	ruby-data_objects
 SUBDIR+=	ruby-datamapper

@@ -1,20 +1,25 @@
-# $NetBSD: Makefile,v 1.2 2020/08/31 18:08:53 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2020/09/08 13:16:38 wiz Exp $
 
-DISTNAME=	Sub-HandlesVia-0.013
+DISTNAME=	Sub-HandlesVia-0.014
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	devel perl5
-MASTER_SITES=	https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/T/TO/TOBYINK/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://cpan.metacpan.org/authors/id/T/TO/TOBYINK/
+HOMEPAGE=	https://metacpan.org/pod/Sub::HandlesVia
 COMMENT=	Alternative handles_via implementation
 LICENSE=	${PERL5_LICENSE}
 
+DEPENDS+=	p5-Class-Method-Modifiers-[0-9]*:../../devel/p5-Class-Method-Modifiers
+DEPENDS+=	p5-Class-Tiny-[0-9]*:../../devel/p5-Class-Tiny
+DEPENDS+=	p5-Exporter-Tiny-[0-9]*:../../devel/p5-Exporter-Tiny
+DEPENDS+=	p5-Role-Tiny-[0-9]*:../../devel/p5-Role-Tiny
+DEPENDS+=	p5-Type-Tiny-[0-9]*:../../devel/p5-Type-Tiny
 TEST_DEPENDS+=	p5-MooX-TypeTiny-[0-9]*:../../devel/p5-MooX-TypeTiny
 TEST_DEPENDS+=	p5-Mouse-[0-9]*:../../devel/p5-Mouse
-TEST_DEPENDS+=	p5-MooseX-ArrayRef-[0-9]*:../../devel/p5-MooseX-ArrayRef
-TEST_DEPENDS+=	p5-MooseX-InsideOut-[0-9]*:../../devel/p5-MooseX-InsideOut
+TEST_DEPENDS+=	p5-Moose-[0-9]*:../../devel/p5-Moose
+TEST_DEPENDS+=	p5-Test-Fatal-[0-9]*:../../devel/p5-Test-Fatal
+TEST_DEPENDS+=	p5-Test-Requires-[0-9]*:../../devel/p5-Test-Requires
 
 PERL5_PACKLIST=	auto/Sub/HandlesVia/.packlist
 

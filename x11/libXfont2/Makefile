@@ -14,6 +14,7 @@ USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		pkg-config
 USE_FEATURES+=		err strnlen
+LIBNBCOMPAT_USE_PIC=	yes
 
 PKGCONFIG_OVERRIDE+=	xfont2.pc.in
 

@@ -17,6 +17,7 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake pkg-config
 USE_LIBTOOL=		yes
 USE_FEATURES=		getline strndup
+LIBNBCOMPAT_USE_PIC=	yes
 PKGCONFIG_OVERRIDE+=	libdrm.pc.in
 GNU_CONFIGURE=		yes
 

@@ -44,9 +44,15 @@ _FEATURE_USE_NBCOMPAT=	yes
 
 .  if ${_FEATURE_USE_NBCOMPAT} == "yes"
 .    include "${PKGSRCDIR}/pkgtools/libnbcompat/inplace.mk"
+.    if !empty(LIBNBCOMPAT_USE_PIC:M[Yy][Ee][Ss])
+FEATURE_CPPFLAGS+=	${CPPFLAGS.nbcompat_pic}
+FEATURE_LDFLAGS+=	${LDFLAGS.nbcompat_pic}
+FEATURE_LIBS+=		${LDADD.nbcompat_pic}
+.    else
 FEATURE_CPPFLAGS+=	${CPPFLAGS.nbcompat}
 FEATURE_LDFLAGS+=	${LDFLAGS.nbcompat}
 FEATURE_LIBS+=		${LDADD.nbcompat}
+.    endif
 .  endif
 
 .  if (${_FEATURE_USE_NBCOMPAT} == "yes") && !empty(MISSING_FEATURES:Mcdefs)

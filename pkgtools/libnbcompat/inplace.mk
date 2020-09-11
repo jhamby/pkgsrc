@@ -27,11 +27,12 @@ LDADD.nbcompat_pic=	-lnbcompat
 post-extract: libnbcompat-extract
 .PHONY: libnbcompat-extract
 libnbcompat-extract:
+.if empty(LIBNBCOMPAT_USE_PIC:M[Yy][Ee][Ss])
 	${RUN} ${CP} -R ${LIBNBCOMPAT_FILESDIR} ${LIBNBCOMPAT_SRCDIR}
 	${RM} -f ${LIBNBCOMPAT_SRCDIR}/config.guess ${LIBNBCOMPAT_SRCDIR}/config.sub
 	${LN} -fs ${PKGSRCDIR}/mk/gnu-config/config.guess ${LIBNBCOMPAT_SRCDIR}/config.guess
 	${LN} -fs ${PKGSRCDIR}/mk/gnu-config/config.sub ${LIBNBCOMPAT_SRCDIR}/config.sub
-.if !empty(LIBNBCOMPAT_USE_PIC:M[Yy][Ee][Ss])
+.else
 	${RUN} ${CP} -R ${LIBNBCOMPAT_FILESDIR} ${LIBNBCOMPAT_PICDIR}
 	${RM} -f ${LIBNBCOMPAT_PICDIR}/config.guess ${LIBNBCOMPAT_PICDIR}/config.sub
 	${LN} -fs ${PKGSRCDIR}/mk/gnu-config/config.guess ${LIBNBCOMPAT_PICDIR}/config.guess
@@ -51,6 +52,7 @@ CONFIGURE_ENV+=	ac_cv_func_fts_open=no
 pre-configure: libnbcompat-build
 .PHONY: libnbcompat-build
 libnbcompat-build:
+.if empty(LIBNBCOMPAT_USE_PIC:M[Yy][Ee][Ss])
 	@${STEP_MSG} "Configuring and building libnbcompat"
 	${RUN} ${_ULIMIT_CMD}						\
 	cd ${LIBNBCOMPAT_SRCDIR} && ${SETENV}				\
@@ -59,7 +61,7 @@ libnbcompat-build:
 		${CONFIGURE_ENV:NLIBS=*} ${CONFIG_SHELL}		\
 		${CONFIGURE_SCRIPT} ${NBCOMPAT_CONFIGURE_ARGS} &&	\
 		${SETENV} ${MAKE_ENV} ${MAKE} -j${MAKE_JOBS:U1:Q}
-.if !empty(LIBNBCOMPAT_USE_PIC:M[Yy][Ee][Ss])
+.else
 	@${STEP_MSG} "Configuring and building libnbcompat (PIC version)"
 	${RUN} ${_ULIMIT_CMD}						\
 	cd ${LIBNBCOMPAT_PICDIR} && ${SETENV}				\

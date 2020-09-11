@@ -13,6 +13,7 @@ LICENSE=	mit AND 2-clause-bsd AND isc AND modified-bsd
 USE_LIBTOOL=	yes
 USE_TOOLS+=	autoconf automake pkg-config
 USE_FEATURES+=	strnlen
+LIBNBCOMPAT_USE_PIC=	yes
 GNU_CONFIGURE=	yes
 # 3 test failures as of 1.31.0
 # https://github.com/libuv/libuv/issues/2437

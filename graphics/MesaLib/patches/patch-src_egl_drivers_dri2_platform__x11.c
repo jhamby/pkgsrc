@@ -1,6 +1,6 @@
 $NetBSD: patch-src_egl_drivers_dri2_platform__x11.c,v 1.3 2019/08/21 13:35:28 nia Exp $
 
-Provide compat strndup for older Darwin.
+Provide compat strndup for older Darwin and Solaris 10.
 
 * From FreeBSD ports 18.0.0:
 work-around for https://bugs.freedesktop.org/show_bug.cgi?id=100627
@@ -15,13 +15,13 @@ without DRI3 support.
 
 * Added logging statement to note dri3 initialization being invoked.
 
---- src/egl/drivers/dri2/platform_x11.c.orig	2018-02-09 02:17:57.000000000 +0000
-+++ src/egl/drivers/dri2/platform_x11.c
-@@ -608,6 +608,23 @@ dri2_x11_local_authenticate(struct dri2_
+--- src/egl/drivers/dri2/platform_x11.c.orig	2020-04-29 15:48:24.000000000 +0000
++++ src/egl/drivers/dri2/platform_x11.c	2020-09-02 19:59:00.040759107 +0000
+@@ -635,6 +635,23 @@
     return EGL_TRUE;
  }
  
-+#if (defined(__APPLE__) && __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__-0 < 1070)
++#if (defined(__APPLE__) && __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__-0 < 1070) || defined(__sun__)
 +static char *
 +strndup(const char *s, int length)
 +{
@@ -41,7 +41,7 @@ without DRI3 support.
  static EGLBoolean
  dri2_x11_connect(struct dri2_egl_display *dri2_dpy)
  {
-@@ -1466,8 +1483,15 @@ dri2_initialize_x11(_EGLDriver *drv, _EG
+@@ -1550,8 +1567,15 @@
  
     if (!disp->Options.ForceSoftware) {
  #ifdef HAVE_DRI3

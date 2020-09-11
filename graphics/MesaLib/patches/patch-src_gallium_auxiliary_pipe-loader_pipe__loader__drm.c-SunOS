@@ -1,0 +1,17 @@
+$NetBSD $
+
+Patch for Solaris 10's lack of F_DUPFD_CLOEXEC.
+
+--- src/gallium/auxiliary/pipe-loader/pipe_loader_drm.c.orig	2020-09-02 19:18:11.127621693 +0000
++++ src/gallium/auxiliary/pipe-loader/pipe_loader_drm.c	2020-09-02 20:09:41.736012412 +0000
+@@ -46,6 +46,10 @@
+ #include "util/u_dl.h"
+ #include "util/u_debug.h"
+ 
++#ifndef F_DUPFD_CLOEXEC
++#define F_DUPFD_CLOEXEC F_DUPFD
++#endif
++
+ #define DRM_RENDER_NODE_DEV_NAME_FORMAT "%s/renderD%d"
+ #define DRM_RENDER_NODE_MAX_NODES 63
+ #define DRM_RENDER_NODE_MIN_MINOR 128

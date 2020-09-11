@@ -18,8 +18,6 @@ USE_LIBTOOL=	yes
 # ERROR: C++ Compiler does not support -std=c++14
 GCC_REQD+=	5
 
-USE_FEATURES+=	strnlen
-
 CFLAGS.SunOS+=		-D_POSIX_PTHREAD_SEMANTICS
 CXXFLAGS.SunOS+=	-Drestrict=__restrict__
 LDFLAGS.SunOS+=		-lsocket -lnsl

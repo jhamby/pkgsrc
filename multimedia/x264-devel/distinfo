@@ -6,4 +6,5 @@ SHA512 (x264-snapshot-20191217-2245.tar.bz2) = 89061f66fa86dfb868759e5b1dabbb6d1
 Size (x264-snapshot-20191217-2245.tar.bz2) = 774081 bytes
 SHA1 (patch-common_cpu.c) = ef15bae000163e9c10d2e414e841486dd2920b80
 SHA1 (patch-configure) = 101800ee97242ab4f42da8fc6f83b8a6209a1993
+SHA1 (patch-configure-SunOS) = 792dcf1cecbed60c82190062e3e4eb2164b11cfc
 SHA1 (patch-encoder_analyse.c) = 2057583899e029a4c2173c511293e6a35cf80f78

@@ -1,0 +1,19 @@
+$NetBSD $
+
+Patch for Solaris 10: /usr/ucb/install doesn't recognize the install flags.
+
+--- configure.orig	2020-09-11 18:53:35.156848341 +0000
++++ configure	2020-09-11 19:02:30.739529746 +0000
+@@ -678,8 +678,10 @@
+         else
+             LDFLAGS="$LDFLAGS /usr/lib/values-xpg6.o"
+         fi
+-        if test -x /usr/ucb/install ; then
+-            INSTALL=/usr/ucb/install
++        if test -x /usr/pkg/bin/ginstall ; then
++            INSTALL=/usr/pkg/bin/ginstall
++        elif test -x /opt/csw/bin/ginstall ; then
++            INSTALL=/opt/csw/bin/ginstall
+         elif test -x /usr/bin/ginstall ; then
+             # OpenSolaris
+             INSTALL=/usr/bin/ginstall

@@ -30,6 +30,7 @@ BUILD_DEPENDS+=		nasm>=0.98.39nb3:../../devel/nasm
 .endif
 
 CFLAGS.SunOS+=		-D__inline=inline
+LDFLAGS.SunOS+=		-lrt
 SUBST_CLASSES.SunOS+=	ld
 SUBST_MESSAGE.ld=	Fixing linker arguments for Solaris
 SUBST_STAGE.ld=		pre-configure

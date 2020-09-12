@@ -10,3 +10,4 @@ SHA1 (patch-common_cpu.h) = 33e3bb9bc9cb60735aa09efa185c474ebd3e6af5
 SHA1 (patch-common_quant.cpp) = 810ba9af4ec6a767af18fe59a10feb0bca626777
 SHA1 (patch-encoder_analysis.cpp) = 28b23506e7ffbb3e019eb2ae9f749054cc865c9f
 SHA1 (patch-encoder_encoder.cpp) = 907db18c8e9afd51684ed886da70c23ac3d3652a
+SHA1 (patch-source_common_common.cpp) = f4293e8ce239edc2b5f3f1c6fd75b0c73c006e9c

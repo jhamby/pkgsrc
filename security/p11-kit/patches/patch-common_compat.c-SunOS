@@ -1,0 +1,16 @@
+$NetBSD $
+
+Fix build break due to conflicting definition of _XOPEN_SOURCE.
+
+--- common/compat.c.orig	2020-09-11 16:47:22.225666812 +0000
++++ common/compat.c	2020-09-11 16:53:20.137901804 +0000
+@@ -38,7 +38,9 @@
+  * This is needed to expose pthread_mutexattr_settype and PTHREAD_MUTEX_DEFAULT
+  * on older pthreads implementations
+  */
++#ifndef _XOPEN_SOURCE
+ #define _XOPEN_SOURCE 700
++#endif
+ 
+ #include "compat.h"
+ #include "debug.h"

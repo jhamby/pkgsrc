@@ -6,3 +6,5 @@ SHA512 (p11-kit-0.23.21.tar.xz) = 4c796ca2c72a650f105a7a70aa62e55edb12e1c151e91e
 Size (p11-kit-0.23.21.tar.xz) = 827064 bytes
 SHA1 (patch-Makefile.in) = 1393b1c8892e90362575d5d325a583921f629b3c
 SHA1 (patch-common_compat.c) = bdcb10cebe5e7755c81f88ef033b9dfecd7a1aad
+SHA1 (patch-common_compat.c-SunOS) = e8a8c8f41c91d184960da6dca2b0dfdfc359e5a6
+SHA1 (patch-p11-kit_server.c) = 4fae6b11f064ab9d1fcef2b8217a869a46bae8fe

@@ -15,6 +15,7 @@ USE_TOOLS+=		gmake
 USE_LIBTOOL=		yes
 USE_LANGUAGES=		c c++
 USE_FEATURES+=		strnlen
+LIBNBCOMPAT_USE_PIC=	yes
 
 LDFLAGS.SunOS+=		-lm
 LDFLAGS.NetBSD+=	-ltermcap

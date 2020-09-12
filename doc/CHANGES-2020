@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2020,v 1.5130 2020/09/11 14:47:51 leot Exp $
+$NetBSD: CHANGES-2020,v 1.5135 2020/09/12 00:23:13 gutteridge Exp $
 
 Changes to the packages collection and infrastructure in 2020:
 
@@ -7767,3 +7767,8 @@ Changes to the packages collection and infrastructure in 2020:
 	Updated devel/py-google-api-core to 1.22.2 [adam 2020-09-11]
 	Added x11/clipnotify version 1.0.2 [leot 2020-09-11]
 	Updated www/webkit-gtk to 2.30.0 [leot 2020-09-11]
+	Updated net/samba4 to 4.12.6nb2 [jperkin 2020-09-11]
+	Updated chat/mautrix-hangouts to 0.1.2 [js 2020-09-11]
+	Removed chat/py-tulir-hangups [js 2020-09-11]
+	Updated wm/xfce4-wm to 4.14.4 [gutteridge 2020-09-12]
+	Updated textproc/py-markdown-math to 0.7 [gutteridge 2020-09-12]

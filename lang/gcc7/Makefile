@@ -72,6 +72,9 @@ BOOT_LDFLAGS+=		${LDFLAGS:M-Wl,-syslibroot*}
 # GCC does not understand this option; remove it, or stage build will fail
 BUILDLINK_TRANSFORM+=	rm:-stdlib=libc++
 
+# Add optimization flags, plus -g for the final stage (toggled off in stage2).
+MAKE_FLAGS+=		BOOT_CFLAGS="-g ${CFLAGS}"
+
 # Disable fixincludes on SmartOS, header changes result in broken includes
 # being generated, see https://github.com/joyent/pkgsrc-legacy/issues/270
 .if ${OS_VARIANT} == "SmartOS"
